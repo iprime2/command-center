@@ -2,13 +2,9 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import { useAuth } from './auth/AuthContext'
 import { AppShell } from './components/AppShell'
 import { LoginPage, RegisterPage } from './pages/AuthPages'
-import {
-  MoneyPage,
-  PlaceholderPage,
-  ProjectDetailPage,
-  ProjectsPage,
-  TodayPage,
-} from './pages/ShellPages'
+import { MoneyPage, PlaceholderPage, TodayPage } from './pages/ShellPages'
+import { ProjectDetailPage } from './pages/ProjectDetailPage'
+import { ProjectsPage } from './pages/ProjectsPage'
 
 function RequireAuth() {
   const { user, loading } = useAuth()

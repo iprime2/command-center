@@ -1,0 +1,15 @@
+---
+description: Mandatory security invariants for Command Center (secrets, auth, validation)
+alwaysApply: true
+---
+
+# Security
+
+- Never commit secrets (`.env`, tokens, keys, credentials). Never log secrets.
+- Validate all external input at API boundaries (path/query/body). Prefer typed parsing (e.g. serde + validators).
+- Use parameterized SQL via SQLx — no string-built queries.
+- Authn/authz on protected routes; do not trust client-only checks.
+- Escape/encode for XSS on any user-controlled HTML; prefer text nodes / safe frameworks.
+- Error responses must not leak internals (stack traces, DB details) to clients.
+- For expense/money paths: treat amounts and ownership as sensitive; authorize by user.
+- Before shipping auth or money changes, load `.cursor/skills/security-review/SKILL.md`.

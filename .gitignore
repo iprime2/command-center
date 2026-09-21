@@ -1,0 +1,36 @@
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# Rust
+apps/api/target/
+**/target/
+**/*.rs.bk
+
+# Node / Vite
+apps/web/node_modules/
+apps/web/dist/
+apps/web/.vite/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.iml
+
+# Logs / coverage
+*.log
+coverage/
+.nyc_output/
+
+# Local toolchain helpers (keep wrappers under .tools/bin)
+# Ignore local Postgres / mamba artifacts if ever linked here
+pgdata*/
+*.sql.bak
+
+# Coverage / OS already covered above
+

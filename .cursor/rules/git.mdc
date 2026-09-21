@@ -1,0 +1,11 @@
+---
+description: Git permission — no pull/push/commit unless user explicitly asks
+alwaysApply: true
+---
+
+# Git
+
+- **Never** `git pull`, `git push`, or `git commit` (including amend, `--no-verify`, or hooks that commit) unless the user **explicitly asks in this conversation**.
+- Allowed without asking: read-only git (`status`, `diff`, `log`, `show`).
+- If commit/push/pull would help, ask first and wait.
+- Do not update git config.

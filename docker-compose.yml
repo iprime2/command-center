@@ -1,0 +1,21 @@
+# Optional Postgres via Docker (local micromamba/pg on 54329 is also fine).
+# Usage: docker compose up -d
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: cc
+      POSTGRES_PASSWORD: cc
+      POSTGRES_DB: command_center
+    ports:
+      - "5432:5432"
+    volumes:
+      - cc_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cc -d command_center"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  cc_pg_data:

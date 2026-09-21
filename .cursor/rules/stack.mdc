@@ -1,0 +1,16 @@
+---
+description: Command Center locked stack and layering — Rust API owns business logic
+alwaysApply: true
+---
+
+# Stack lock
+
+- API: **Rust + Axum + SQLx + PostgreSQL**; expose **OpenAPI**; health/readiness endpoints as the API grows.
+- Web: **Vite + React + React Router + Tailwind** — thin client only.
+- Desktop later: **Electron**. Mobile later: **Expo**. Same API for all clients.
+- Shared contract: OpenAPI → generated TS client when available. Do not invent parallel DTOs in the UI.
+- **Business rules belong in the Rust API**, not in Vite, Electron, or ad hoc fetch helpers.
+- Do not add a Node/Next “second backend” beside Axum.
+- Entities: UUID `id`, `created_at`, `updated_at`, `deleted_at` (soft delete) for sync-ready clients.
+- Money: **INR-first** for expenses in Milestone A.
+- FitSage remains a separate project; do not merge code unless the user explicitly asks.

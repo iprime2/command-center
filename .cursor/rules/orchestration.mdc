@@ -1,0 +1,28 @@
+---
+description: When to load Command Center skills and how Lead/QA/implementers collaborate
+alwaysApply: true
+---
+
+# Orchestration
+
+For non-trivial work in this repo, follow `.cursor/skills/using-cc-skills/SKILL.md` and `.cursor/skills/lead-engineer/SKILL.md`.
+
+## Routing (summary)
+
+| Situation | Skill |
+|-----------|--------|
+| Feature / multi-file / unclear scope | `lead-engineer` |
+| Implement one vertical slice | `senior-engineer` (+ `rust-backend-engineer` or `frontend-engineer`) |
+| UI/IA/states/a11y | `ui-ux-engineer` |
+| After implementation | `code-review-quality` then `qa-engineer` |
+| New behavior / bugfix | `tdd-workflow` |
+| About to claim done | `verification-loop` |
+| Auth, money, input, secrets | `security-review` |
+| New/changed HTTP endpoints | `api-contract-design` |
+
+## Hard gates
+
+- Lead does **not** implement non-trivial feature code; delegates via Task subagents.
+- QA must **not** be the author of the code under test.
+- No sign-off without pasted verification evidence.
+- Small fixes (typo, one-file config): implement directly; still verify.

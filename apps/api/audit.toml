@@ -1,0 +1,6 @@
+# cargo-audit config (run from apps/api)
+[advisories]
+# Transitive `rsa` (via dependency tree). No fixed upgrade on crates.io yet.
+# Our auth uses Argon2 + opaque session tokens, not RSA PKCS operations.
+# Revisit when a patched `rsa` / upstream bump lands.
+ignore = ["RUSTSEC-2023-0071"]

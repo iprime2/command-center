@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useMatch, useNavigate } from 'react-router-dom'
 import { api } from '../api/client'
 import { useAuth } from '../auth/AuthContext'
 
@@ -15,6 +15,9 @@ const navItems = [
 export function AppShell() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const isProjectBoard = Boolean(useMatch('/projects/:id'))
+  const mainMaxWidth = isProjectBoard ? 'max-w-[90rem]' : 'max-w-5xl'
+  const headerMaxWidth = isProjectBoard ? 'max-w-[90rem]' : 'max-w-5xl'
   const [title, setTitle] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -52,7 +55,7 @@ export function AppShell() {
   return (
     <div className="min-h-full flex flex-col">
       <header className="border-b border-[var(--border)] bg-[var(--bg-elevated)]/90 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3">
+        <div className={`mx-auto flex ${headerMaxWidth} flex-wrap items-center justify-between gap-3 px-4 py-3`}>
           <div className="flex items-baseline gap-3">
             <span className="text-lg font-semibold tracking-tight text-[var(--accent)]">
               Command Center
@@ -96,7 +99,7 @@ export function AppShell() {
           </button>
         </div>
         {(error || success) && (
-          <div className="mx-auto max-w-5xl px-4 pb-2">
+          <div className={`mx-auto ${headerMaxWidth} px-4 pb-2`}>
             {error ? (
               <p className="text-sm text-[var(--danger)]" role="alert">
                 Couldn’t capture — {error}
@@ -109,7 +112,7 @@ export function AppShell() {
             ) : null}
           </div>
         )}
-        <nav className="mx-auto flex max-w-5xl gap-1 overflow-x-auto px-4 pb-2" aria-label="Main">
+        <nav className={`mx-auto flex ${headerMaxWidth} gap-1 overflow-x-auto px-4 pb-2`} aria-label="Main">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -129,7 +132,7 @@ export function AppShell() {
           ))}
         </nav>
       </header>
-      <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
+      <main className={`mx-auto w-full ${mainMaxWidth} flex-1 px-4 py-8`}>
         <Outlet />
       </main>
     </div>

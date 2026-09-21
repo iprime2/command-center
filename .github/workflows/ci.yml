@@ -91,7 +91,8 @@ jobs:
         run: cargo install cargo-audit --locked
       - name: Rust dependency audit
         working-directory: apps/api
-        run: cargo audit
+        # RUSTSEC-2023-0071: transitive `rsa` with no patched release; auth is Argon2/sessions.
+        run: cargo audit --ignore RUSTSEC-2023-0071
 
       - uses: pnpm/action-setup@v4
         with:

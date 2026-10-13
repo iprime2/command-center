@@ -79,7 +79,7 @@ export function ProjectCard({
                 className={[
                   'inline-flex items-center rounded-md px-1.5 py-0.5 text-[0.6875rem] font-medium tabular-nums ring-1',
                   overdue
-                    ? 'bg-red-50 text-[var(--danger)] ring-red-200'
+                    ? 'bg-[var(--danger)]/12 text-[var(--danger)] ring-[var(--danger)]/35'
                     : 'bg-[var(--bg)] text-[var(--muted)] ring-[var(--border)]',
                 ].join(' ')}
               >

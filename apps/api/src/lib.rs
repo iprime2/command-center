@@ -3,6 +3,7 @@
 pub mod auth;
 pub mod budgets;
 pub mod config;
+pub mod env_file;
 pub mod error;
 pub mod expenses;
 pub mod openapi;

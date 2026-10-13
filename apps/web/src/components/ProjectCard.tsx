@@ -97,7 +97,7 @@ export function ProjectCard({
               onChange={(e) => onMove(e.target.value as TaskStatus)}
               onClick={(e) => e.stopPropagation()}
               onMouseDown={(e) => e.stopPropagation()}
-              className="ml-auto max-w-[7.5rem] rounded-md border border-[var(--border)] bg-white px-1.5 py-1 text-[0.6875rem] font-medium text-[var(--muted)] outline-none focus-visible:border-[var(--accent)] focus-visible:ring-2 focus-visible:ring-[var(--accent)]/25 disabled:opacity-60"
+              className="cc-input-sm ml-auto max-w-[7.5rem] py-1 text-[0.6875rem] font-medium text-[var(--muted)] focus-visible:ring-[var(--accent)]/25 disabled:opacity-60"
             >
               {BOARD_COLUMNS.map((opt) => (
                 <option key={opt.status} value={opt.status}>

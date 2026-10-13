@@ -88,12 +88,12 @@ export function ProjectBoard({
             disabled={creating}
             placeholder="Add a task to backlog…"
             onChange={(e) => setQuickTitle(e.target.value)}
-            className="min-w-0 flex-1 rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 disabled:opacity-60"
+            className="cc-input min-w-0 flex-1 disabled:opacity-60"
           />
           <button
             type="submit"
             disabled={creating}
-            className="shrink-0 rounded-md bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--accent-hover)] disabled:opacity-60"
+            className="cc-btn-primary shrink-0 px-4 py-2"
           >
             {creating ? 'Adding…' : 'Add'}
           </button>
@@ -115,7 +115,7 @@ export function ProjectBoard({
         className="rounded-2xl border border-[var(--border)] bg-[var(--board-canvas)] p-3 sm:p-4"
         style={{
           backgroundImage:
-            'radial-gradient(circle at 1px 1px, rgb(20 32 28 / 6%) 1px, transparent 0)',
+            'radial-gradient(circle at 1px 1px, var(--board-dot) 1px, transparent 0)',
           backgroundSize: '18px 18px',
         }}
       >
@@ -152,7 +152,7 @@ export function ProjectBoard({
                   'min-h-[26rem] shadow-sm sm:w-80',
                   'transition-[border-color,box-shadow] duration-150',
                   isDropTarget
-                    ? 'border-[var(--accent)] shadow-[inset_0_0_0_2px_rgb(13_92_80_/_0.16)]'
+                    ? 'border-[var(--accent)] shadow-[inset_0_0_0_2px_var(--drop-ring)]'
                     : 'border-[var(--border)]',
                 ].join(' ')}
               >
@@ -231,13 +231,13 @@ export function ProjectBoard({
                               setColumnTitle('')
                             }
                           }}
-                          className="w-full rounded-md border border-[var(--border)] bg-white px-2.5 py-1.5 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 disabled:opacity-60"
+                          className="cc-input-sm disabled:opacity-60"
                         />
                         <div className="flex gap-2">
                           <button
                             type="submit"
                             disabled={creating}
-                            className="rounded-md bg-[var(--accent)] px-3 py-1.5 text-sm font-medium text-white hover:bg-[var(--accent-hover)] disabled:opacity-60"
+                            className="cc-btn-primary disabled:opacity-60"
                           >
                             {creating ? 'Adding…' : 'Add card'}
                           </button>

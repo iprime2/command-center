@@ -1,18 +1,33 @@
-# Optional Postgres via Docker (local micromamba/pg on 54329 is also fine).
-# Usage: docker compose up -d
+# Local Postgres only — optional when you are not using a remote DB (e.g. Supabase).
+#
+# Start:  docker compose up -d
+# Stop:   docker compose down
+# Reset:  docker compose down -v   (deletes data volume)
+#
+# Point the API at this instance:
+#   DATABASE_URL=postgres://cc:cc@127.0.0.1:5432/command_center
+#
+# Override defaults via .env (see .env.example CC_POSTGRES_* keys).
+
 services:
   postgres:
     image: postgres:16-alpine
+    container_name: command-center-postgres
+    restart: unless-stopped
     environment:
-      POSTGRES_USER: cc
-      POSTGRES_PASSWORD: cc
-      POSTGRES_DB: command_center
+      POSTGRES_USER: ${CC_POSTGRES_USER:-cc}
+      POSTGRES_PASSWORD: ${CC_POSTGRES_PASSWORD:-cc}
+      POSTGRES_DB: ${CC_POSTGRES_DB:-command_center}
     ports:
-      - "5432:5432"
+      - "${CC_POSTGRES_PORT:-5432}:5432"
     volumes:
       - cc_pg_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U cc -d command_center"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${CC_POSTGRES_USER:-cc} -d ${CC_POSTGRES_DB:-command_center}",
+        ]
       interval: 5s
       timeout: 5s
       retries: 5

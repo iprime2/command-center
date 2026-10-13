@@ -440,13 +440,13 @@ export function MoneyPage() {
                 required
                 disabled={budgetSubmitting || loading}
                 onChange={(e) => setOverallBudget(e.target.value)}
-                className="w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
+                className="cc-input"
               />
             </div>
             <button
               type="submit"
               disabled={budgetSubmitting || loading}
-              className="rounded-md bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--accent-hover)] disabled:opacity-60"
+              className="cc-btn-primary px-4 py-2 disabled:opacity-60"
             >
               {budgetSubmitting ? 'Saving…' : 'Save budget'}
             </button>
@@ -472,7 +472,7 @@ export function MoneyPage() {
                 required
                 disabled={budgetSubmitting || loading || categories.length === 0}
                 onChange={(e) => setCategoryBudgetId(e.target.value)}
-                className="w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
+                className="cc-input"
               >
                 {categories.length === 0 ? (
                   <option value="">No categories</option>
@@ -499,7 +499,7 @@ export function MoneyPage() {
                 required
                 disabled={budgetSubmitting || loading}
                 onChange={(e) => setCategoryBudgetAmount(e.target.value)}
-                className="w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
+                className="cc-input"
               />
             </div>
             <button
@@ -540,7 +540,7 @@ export function MoneyPage() {
             required
             disabled={submitting || loading}
             onChange={(e) => setAmount(e.target.value)}
-            className="w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
+            className="cc-input"
           />
         </div>
         <div>
@@ -553,7 +553,7 @@ export function MoneyPage() {
             required
             disabled={submitting || loading || categories.length === 0}
             onChange={(e) => setCategoryId(e.target.value)}
-            className="w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
+            className="cc-input"
           >
             {categories.length === 0 ? (
               <option value="">No categories</option>
@@ -577,7 +577,7 @@ export function MoneyPage() {
             required
             disabled={submitting || loading}
             onChange={(e) => setSpentOn(e.target.value)}
-            className="w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
+            className="cc-input"
           />
         </div>
         <div>
@@ -591,7 +591,7 @@ export function MoneyPage() {
             maxLength={2000}
             disabled={submitting || loading}
             onChange={(e) => setNote(e.target.value)}
-            className="w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
+            className="cc-input"
           />
         </div>
         {formError ? (
@@ -602,7 +602,7 @@ export function MoneyPage() {
         <button
           type="submit"
           disabled={submitting || loading}
-          className="rounded-md bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--accent-hover)] disabled:opacity-60"
+          className="cc-btn-primary px-4 py-2 disabled:opacity-60"
         >
           {submitting ? 'Saving…' : 'Add expense'}
         </button>

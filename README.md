@@ -16,21 +16,58 @@ Business rules live in the Rust API. The web app is a thin client.
 ## Prerequisites
 
 - Rust (cargo), Node 22+, pnpm
-- PostgreSQL reachable at `DATABASE_URL` (local micromamba Postgres on `127.0.0.1:54329` is fine; or `docker compose up -d` for Docker Postgres on `5432`)
+- PostgreSQL reachable at `DATABASE_URL` — **Supabase (remote)** or **Docker Compose (local)**; see [Database](#database)
 - A C compiler for crate build scripts. If system `gcc` is missing, use Zig wrappers already in `.tools/bin` (see below).
 
 ## Environment
 
 ```bash
 cp .env.example .env
-# edit DATABASE_URL / ports as needed
-
-# Shell setup used in this workspace:
-export PATH="$PWD/.tools/bin:$HOME/micromamba-root/envs/cc-pg/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
-export DATABASE_URL="postgres://cc@127.0.0.1:54329/command_center"
+# Set DATABASE_URL — Supabase URI (remote) or local Docker URL (see Database)
 ```
 
+Put `.env` at the **repo root**. The API loads it when you run `cargo run` from `apps/api`.
+
 `.env` is gitignored. Never commit secrets.
+
+## Database
+
+The API only cares about **`DATABASE_URL`**. Migrations run automatically on API startup.
+
+### Option A — Supabase (remote, free tier)
+
+1. Create a project (e.g. region **South Asia (Mumbai)**).
+2. **Project Settings → Database → Connection string → URI**
+3. Prefer **Session pooler** or **Direct connection** (works best with SQLx migrations).
+4. Append `?sslmode=require` if it is not already in the URI.
+5. **Percent-encode** special characters in the password (`@`, `#`, `%`, etc.).
+6. Paste into `.env`:
+
+   `DATABASE_URL=postgres://postgres.[ref]:...@....pooler.supabase.com:5432/postgres?sslmode=require`
+
+You do **not** need Supabase Data API for this app — the Rust API talks to Postgres directly. Leaving Data API enabled is fine.
+
+### Option B — Docker Compose (local container)
+
+Requires Docker (Docker Desktop with WSL integration on Windows).
+
+```bash
+docker compose up -d
+```
+
+In `.env`:
+
+`DATABASE_URL=postgres://cc:cc@127.0.0.1:5432/command_center`
+
+Optional overrides: `CC_POSTGRES_USER`, `CC_POSTGRES_PASSWORD`, `CC_POSTGRES_DB`, `CC_POSTGRES_PORT` (see `.env.example`).
+
+Stop: `docker compose down` · Wipe data: `docker compose down -v`
+
+### C compiler (local builds)
+
+If system `gcc` is missing, Zig wrappers in `.tools/bin` may be used in this workspace:
+
+`export PATH="$PWD/.tools/bin:$HOME/.cargo/bin:$PATH"`
 
 ### Auth model
 
@@ -63,13 +100,6 @@ cp .env.example .env   # optional; VITE_API_URL defaults to http://127.0.0.1:808
 pnpm install
 pnpm dev               # http://127.0.0.1:5173
 pnpm build
-```
-
-## Optional Docker Postgres
-
-```bash
-docker compose up -d
-# then set DATABASE_URL=postgres://cc:cc@127.0.0.1:5432/command_center
 ```
 
 ## CI

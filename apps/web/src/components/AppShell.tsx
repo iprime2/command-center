@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { NavLink, Outlet, useMatch, useNavigate } from 'react-router-dom'
 import { api } from '../api/client'
 import { useAuth } from '../auth/AuthContext'
+import { ThemeToggle } from './ThemeToggle'
 
 const navItems = [
   { to: '/', label: 'Today', end: true },
@@ -80,23 +81,26 @@ export function AppShell() {
               disabled={submitting}
               placeholder="Capture a task…"
               onChange={(e) => setTitle(e.target.value)}
-              className="min-w-0 flex-1 rounded-md border border-[var(--border)] bg-white px-3 py-1.5 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 disabled:opacity-60"
+              className="cc-input-sm min-w-0 flex-1"
             />
             <button
               type="submit"
               disabled={submitting}
-              className="shrink-0 rounded-md bg-[var(--accent)] px-3 py-1.5 text-sm font-medium text-white hover:bg-[var(--accent-hover)] disabled:opacity-60"
+              className="cc-btn-primary shrink-0"
             >
               {submitting ? 'Saving…' : 'Capture'}
             </button>
           </form>
-          <button
-            type="button"
-            onClick={() => void logout()}
-            className="rounded-md border border-[var(--border)] px-3 py-1.5 text-sm text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
-          >
-            Log out
-          </button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => void logout()}
+              className="rounded-md border border-[var(--border)] px-3 py-1.5 text-sm text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            >
+              Log out
+            </button>
+          </div>
         </div>
         {(error || success) && (
           <div className={`mx-auto ${headerMaxWidth} px-4 pb-2`}>
@@ -122,7 +126,7 @@ export function AppShell() {
                 [
                   'whitespace-nowrap rounded-md px-3 py-1.5 text-sm transition-colors',
                   isActive
-                    ? 'bg-[var(--accent)] text-white'
+                    ? 'bg-[var(--accent)] text-[var(--on-accent)]'
                     : 'text-[var(--muted)] hover:bg-[var(--bg)] hover:text-[var(--ink)]',
                 ].join(' ')
               }

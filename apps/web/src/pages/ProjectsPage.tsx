@@ -87,7 +87,7 @@ export function ProjectsPage() {
               disabled={submitting}
               placeholder="e.g. Side project, Home reno"
               onChange={(e) => setName(e.target.value)}
-              className="w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
+              className="cc-input"
             />
           </div>
           <div>
@@ -101,7 +101,7 @@ export function ProjectsPage() {
               rows={3}
               disabled={submitting}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
+              className="cc-input"
             />
           </div>
           {formError ? (
@@ -112,7 +112,7 @@ export function ProjectsPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full rounded-md bg-[var(--accent)] px-4 py-2.5 text-sm font-medium text-white hover:bg-[var(--accent-hover)] disabled:opacity-60 sm:w-auto"
+            className="cc-btn-primary w-full px-4 py-2.5 sm:w-auto"
           >
             {submitting ? 'Creating…' : 'Create project'}
           </button>

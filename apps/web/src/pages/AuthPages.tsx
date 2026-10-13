@@ -1,6 +1,7 @@
 import { useState, type FormEvent, type ReactNode } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { api } from '../api/client'
+import { ThemeToggle } from '../components/ThemeToggle'
 import { useAuth } from '../auth/AuthContext'
 
 export function LoginPage() {
@@ -57,7 +58,7 @@ export function LoginPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full rounded-md bg-[var(--accent)] px-4 py-2.5 text-sm font-medium text-white hover:bg-[var(--accent-hover)] disabled:opacity-60"
+          className="cc-btn-primary w-full px-4 py-2.5"
         >
           {submitting ? 'Signing in…' : 'Log in'}
         </button>
@@ -126,7 +127,7 @@ export function RegisterPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full rounded-md bg-[var(--accent)] px-4 py-2.5 text-sm font-medium text-white hover:bg-[var(--accent-hover)] disabled:opacity-60"
+          className="cc-btn-primary w-full px-4 py-2.5"
         >
           {submitting ? 'Creating…' : 'Register'}
         </button>
@@ -151,8 +152,11 @@ function AuthLayout({
   children: ReactNode
 }) {
   return (
-    <div className="flex min-h-full items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-8 shadow-sm">
+    <div className="relative flex min-h-full items-center justify-center px-4 py-12">
+      <div className="absolute right-4 top-4">
+        <ThemeToggle />
+      </div>
+      <div className="w-full max-w-md rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-8 shadow-[var(--shadow-card)]">
         <p className="text-sm font-semibold tracking-wide text-[var(--accent)]">Command Center</p>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight">{title}</h1>
         <p className="mt-1 text-sm text-[var(--muted)]">{subtitle}</p>
@@ -194,7 +198,7 @@ function Field({
         required={required}
         minLength={minLength}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
+        className="cc-input"
       />
     </div>
   )

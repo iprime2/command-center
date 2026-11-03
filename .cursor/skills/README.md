@@ -16,6 +16,9 @@ Load via descriptions or `@skill` / `/skill-name`. Start with **using-cc-skills*
 | `security-review` | Auth, secrets, money paths |
 | `code-review-quality` | Five-axis review |
 | `api-contract-design` | OpenAPI-first contracts |
+| `feature-recon` | Map one outside flow (clean-room brief) |
+| `feature-adapt` | Turn that brief into a locked-stack slice |
+| `feature-parity` | Score the slice against the feature matrix |
 
 Always-on rules: `.cursor/rules/{stack,security,git,orchestration}.mdc`  
 North star: [`AGENTS.md`](../../AGENTS.md)

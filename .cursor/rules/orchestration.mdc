@@ -19,6 +19,7 @@ For non-trivial work in this repo, follow `.cursor/skills/using-cc-skills/SKILL.
 | About to claim done | `verification-loop` |
 | Auth, money, input, secrets | `security-review` |
 | New/changed HTTP endpoints | `api-contract-design` |
+| Replicate one flow from another app | `feature-recon` → `feature-adapt`; after the build, `feature-parity` |
 
 ## Hard gates
 

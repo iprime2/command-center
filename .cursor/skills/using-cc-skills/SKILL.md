@@ -2,8 +2,9 @@
 name: using-cc-skills
 description: >-
   Routes Command Center work to the correct project skills (lead, senior, rust,
-  frontend, UI/UX, QA, TDD, verify, security, review, API contract). Use at the
-  start of non-trivial tasks or when unsure which skill applies.
+  frontend, UI/UX, QA, TDD, verify, security, review, API contract, feature
+  replication). Use at the start of non-trivial tasks or when unsure which
+  skill applies.
 ---
 
 # Using Command Center skills
@@ -20,6 +21,8 @@ Task arrives
   │     ├── Web UI wiring → frontend-engineer (+ ui-ux-engineer if UX-heavy)
   │     └── General slice → senior-engineer + tdd-workflow
   ├── Designing screens / states / a11y? → ui-ux-engineer
+  ├── Replicate one flow from another app? → feature-recon, then feature-adapt
+  │     After that slice is built → feature-parity
   ├── Designing or changing HTTP API? → api-contract-design
   ├── Auth, money, secrets, untrusted input? → security-review
   ├── Bug / weird failure? → systematic steps in tdd-workflow + verification-loop
